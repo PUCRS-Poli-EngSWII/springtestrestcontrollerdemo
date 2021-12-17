@@ -1,11 +1,11 @@
 package com.in28minutes.springboot.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+//import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.in28minutes.springboot.model.Course;
 import com.in28minutes.springboot.service.StudentService;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(value = StudentController.class, secure = false)
+//@RunWith(SpringRunner.class)
+//@WebMvcTest(value = StudentController.class, secure = false)
+@WebMvcTest(value = StudentController.class)
 public class StudentControllerTest {
 
 	@Autowired
@@ -54,10 +55,11 @@ public class StudentControllerTest {
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
 		System.out.println(result.getResponse());
-		String expected = "{id:sem_nome,name:Spring,description:10 Steps}";
+		String expected = "{id:Course1,name:Spring,description:10 Steps}";
 
 		// {"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import Project","First Example","Second Example"]}
 
+//		assertEquals("meu json aqui", result.getResponse());
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);
 	}
